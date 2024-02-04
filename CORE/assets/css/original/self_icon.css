@@ -1,0 +1,73 @@
+@font-face {
+    font-family: 'icomoon';
+    src: url('https://ik.imagekit.io/pts/self_icon/self_icon_N7spTuA8T.eot?ik-sdk-version=javascript-1.4.3&updatedAt=1659723656796');
+    src: url('https://ik.imagekit.io/pts/self_icon/self_icon_B_s2C_P44.ttf?ik-sdk-version=javascript-1.4.3&updatedAt=1659723657056') format('truetype'),
+        url('https://ik.imagekit.io/pts/self_icon/self_icon_BNTswJFlN.woff?ik-sdk-version=javascript-1.4.3&updatedAt=1659723657230') format('woff'),
+        url('https://ik.imagekit.io/pts/self_icon/self_icon_isya2ldnc.svg?ik-sdk-version=javascript-1.4.3&updatedAt=1659723656812') format('svg');
+    font-weight: normal;
+    font-style: normal;
+    font-display: block;
+}
+
+.si {
+    /* use !important to prevent issues with browser extensions that change fonts */
+    font-family: 'icomoon' !important;
+    speak: never;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+
+    /* Better Font Rendering =========== */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.si.arrow-up:before {
+    content: "\e900";
+}
+
+.si.arrow-up-light:before {
+    content: "\e901";
+}
+
+.si.long-arrow-down:before {
+    content: "\e902";
+}
+
+.si.long-arrow-left:before {
+    content: "\e903";
+}
+
+.si.long-arrow-right:before {
+    content: "\e904";
+}
+
+.si.long-arrow-up:before {
+    content: "\e905";
+}
+
+.si.arrow-down:before {
+    content: "\e906";
+}
+
+.si.arrow-down-light:before {
+    content: "\e907";
+}
+
+.si.arrow-left:before {
+    content: "\e908";
+}
+
+.si.arrow-left-light:before {
+    content: "\e909";
+}
+
+.si.arrow-right:before {
+    content: "\e90a";
+}
+
+.si.arrow-right-light:before {
+    content: "\e90b";
+}

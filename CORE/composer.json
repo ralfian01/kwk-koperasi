@@ -1,0 +1,16 @@
+{
+  "require": {
+    "php": "^7.4 || ^8.0",
+    "ralfian01/mvc-me": "1.0.0.x-dev",
+    "firebase/php-jwt": "^6.4",
+    "ramsey/uuid": "^4.2"
+  },
+  "repositories": [
+    {
+      "type": "vcs",
+      "url": "https://github.com/ralfian01/mvc-me.git"
+    }
+  ],
+  "minimum-stability": "stable",
+  "prefer-stable": true
+}

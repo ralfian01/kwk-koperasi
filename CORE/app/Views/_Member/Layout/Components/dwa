@@ -1,0 +1,505 @@
+<div class="hide dk_block menu_container" style="max-height: 30px;"></div>
+
+    <div class="menu_container">
+
+        <a href="<?= member_url('dashboard'); ?>" class="menu <?= $pathname == 'dashboard' ? 'fc' : ''; ?>">
+            <div class="icon">
+                <i class="ri-home-7-line"></i>
+            </div>
+            <div class="name">
+                Dashboard
+            </div>
+        </a>
+
+        <?php if (isset($authority['PROJECT'])) : ?>
+            <div class="menu_gr <?= $segment[0] == 'project' ? 'expand' : ''; ?>">
+                <div class="initial">
+                    <div class="icon">
+                        <i class="ri-list-check-2"></i>
+                    </div>
+                    <div class="name">
+                        Project
+
+                        <?php if ($authority['PROJECT']['LEVEL'] == 'ADMIN') : ?>
+                            <?php if ($sidebarData['managerStatus']['need_verification'] >= 1) : ?>
+                                <i class="ri-checkbox-blank-circle-fill anim_pulse clr_context warning ml1 smallest_tx" style="vertical-align: middle;"></i>
+                            <?php endif; ?>
+                        <?php endif; ?>
+                    </div>
+                </div>
+
+                <div class="fold_container">
+
+                    <a href="<?= member_url('project/data'); ?>" class="menu <?= $segment[0] == 'project' && isset($segment[1]) && $segment[1] == 'data' ? 'fc' : ''; ?>">
+                        <div class="icon" style="font-size: 0.6rem;">
+                            <i class="ri-checkbox-blank-circle-fill"></i>
+                        </div>
+                        <div class="name">
+                            List
+                        </div>
+                    </a>
+
+                    <a href="<?= member_url('project/manager'); ?>" class="menu <?= $segment[0] == 'project' && isset($segment[1]) && $segment[1] == 'manager' ? 'fc' : ''; ?>">
+                        <div class="icon" style="font-size: 0.6rem;">
+                            <i class="ri-checkbox-blank-circle-fill"></i>
+                        </div>
+                        <div class="name">
+                            Manager
+
+
+                            <?php if ($sidebarData['managerStatus']['need_verification'] >= 1) : ?>
+                                <i class="ri-checkbox-blank-circle-fill anim_pulse clr_context warning ml1 smallest_tx" style="vertical-align: middle;"></i>
+                            <?php endif; ?>
+                        </div>
+                    </a>
+
+                    <a href="<?= member_url('project/setting'); ?>" class="menu <?= $segment[0] == 'project' && isset($segment[1]) && $segment[1] == 'setting' ? 'fc' : ''; ?>">
+                        <div class="icon" style="font-size: 0.6rem;">
+                            <i class="ri-checkbox-blank-circle-fill"></i>
+                        </div>
+                        <div class="name">
+                            Setting
+                        </div>
+                    </a>
+                </div>
+            </div>
+        <?php endif; ?>
+
+        <?php if (isset($authority['BLOG'])) : ?>
+            <div class="menu_gr <?= $segment[0] == 'blog' ? 'expand' : ''; ?>">
+                <div class="initial">
+                    <div class="icon">
+                        <i class="ri-article-line"></i>
+                    </div>
+                    <div class="name">
+                        Blog
+
+                        <?php if ($authority['BLOG']['LEVEL'] == 'REDACTOR') : ?>
+                            <?php if ($sidebarData['blogStatus']['need_review'] >= 1) : ?>
+                                <i class="ri-checkbox-blank-circle-fill anim_pulse clr_context warning ml1 smallest_tx" style="vertical-align: middle;"></i>
+                            <?php elseif ($sidebarData['authorStatus']['need_verification'] >= 1) : ?>
+                                <i class="ri-checkbox-blank-circle-fill anim_pulse clr_context warning ml1 smallest_tx" style="vertical-align: middle;"></i>
+                            <?php endif; ?>
+                        <?php endif; ?>
+                    </div>
+                </div>
+
+                <div class="fold_container">
+                    <a href="<?= member_url('blog/data'); ?>" class="menu <?= $segment[0] == 'blog' && isset($segment[1]) && $segment[1] == 'data' ? 'fc' : ''; ?>">
+                        <div class="icon" style="font-size: 0.6rem;">
+                            <i class="ri-checkbox-blank-circle-fill"></i>
+                        </div>
+                        <div class="name">
+                            List
+
+                            <?php if ($authority['BLOG']['LEVEL'] == 'REDACTOR') : ?>
+                                <?php if ($sidebarData['blogStatus']['need_review'] >= 1) : ?>
+                                    <i class="ri-checkbox-blank-circle-fill anim_pulse clr_context warning ml1 smallest_tx" style="vertical-align: middle;"></i>
+                                <?php endif; ?>
+                            <?php endif; ?>
+                        </div>
+                    </a>
+
+                    <?php if (isset($authority['ADMIN'])) : ?>
+                        <a href="<?= member_url('blog/author'); ?>" class="menu <?= $segment[0] == 'blog' && isset($segment[1]) && $segment[1] == 'author' ? 'fc' : ''; ?>">
+                            <div class="icon" style="font-size: 0.6rem;">
+                                <i class="ri-checkbox-blank-circle-fill"></i>
+                            </div>
+                            <div class="name">
+                                Author
+
+                                <?php if ($sidebarData['authorStatus']['need_verification'] >= 1) : ?>
+                                    <i class="ri-checkbox-blank-circle-fill anim_pulse clr_context warning ml1 smallest_tx" style="vertical-align: middle;"></i>
+                                <?php endif; ?>
+                            </div>
+                        </a>
+
+                        <a href="<?= member_url('blog/setting'); ?>" class="menu <?= $segment[0] == 'blog' && isset($segment[1]) && $segment[1] == 'setting' ? 'fc' : ''; ?>">
+                            <div class="icon" style="font-size: 0.6rem;">
+                                <i class="ri-checkbox-blank-circle-fill"></i>
+                            </div>
+                            <div class="name">
+                                Setting
+                            </div>
+                        </a>
+                    <?php endif; ?>
+                </div>
+            </div>
+        <?php endif; ?>
+
+
+        <div class="menu_gr <?= $segment[0] == 'my_account' ? 'expand' : ''; ?>">
+            <div class="initial">
+                <div class="icon">
+                    <i class="ri-user-fill"></i>
+                </div>
+                <div class="name">
+                    My account
+                </div>
+            </div>
+
+            <div class="fold_container">
+                <a href="<?= member_url('my_account/profile'); ?>" class="menu <?= count($segment) >= 2 && $segment[0] == 'my_account' && $segment[1] == 'profile' ? 'fc' : ''; ?>">
+                    <div class="icon" style="font-size: 0.6rem;">
+                        <i class="ri-checkbox-blank-circle-fill"></i>
+                    </div>
+                    <div class="name">
+                        Profile
+                    </div>
+                </a>
+
+                <a href="<?= member_url('my_account/setting'); ?>" class="menu <?= count($segment) >= 2 && $segment[0] == 'my_account' && $segment[1] == 'setting' ? 'fc' : ''; ?>">
+                    <div class="icon" style="padding: 0; font-size: 1.2rem; margin-right: 12px;">
+                        <i class="ri-settings-4-fill"></i>
+                    </div>
+                    <div class="name">
+                        Setting
+                    </div>
+                </a>
+
+                <a href="<?= member_url('my_account/permission'); ?>" class="menu <?= count($segment) >= 2 && $segment[0] == 'my_account' && $segment[1] == 'permission' ? 'fc' : ''; ?>">
+                    <div class="icon" style="padding: 0; font-size: 1.2rem; margin-right: 12px;">
+                        <i class="ri-shield-user-fill"></i>
+                    </div>
+                    <div class="name">
+                        Permissions
+                    </div>
+                </a>
+            </div>
+        </div>
+
+
+        <?php if (isset($authority['ADMIN']) && $authority['ADMIN']['STATUS'] == 'ACTIVE') : ?>
+
+            <hr class="single">
+
+            <div class="menu ds">
+                Content
+            </div>
+
+            <a href="<?= member_url('content/general_info'); ?>" class="menu <?= count($segment) >= 2 && $segment[0] == 'content' && $segment[1] == 'general_info' ? 'fc' : ''; ?>">
+                <div class="icon">
+                    <i class="ri-contacts-line"></i>
+                </div>
+                <div class="name">
+                    General info
+                </div>
+            </a>
+
+            <div class="menu_gr <?= count($segment) >= 3 && $segment[0] == 'content' && $segment[1] == 'page' && in_array($segment[2], ['home', 'about']) ? 'expand' : ''; ?>">
+                <div class="initial">
+                    <div class="icon">
+                        <i class="ri-layout-4-line"></i>
+                    </div>
+                    <div class="name">
+                        Page Content
+                    </div>
+                </div>
+
+                <div class="fold_container">
+
+                    <a href="<?= member_url('content/page/home'); ?>" class="menu <?= count($segment) >= 3 && $segment[0] == 'content' && $segment[1] == 'page' && $segment[2] == 'home' ? 'fc' : ''; ?>">
+                        <div class="icon" style="font-size: 0.6rem;">
+                            <i class="ri-checkbox-blank-circle-fill"></i>
+                        </div>
+                        <div class="name">
+                            Home
+                        </div>
+                    </a>
+
+                    <a href="<?= member_url('content/page/about'); ?>" class="menu <?= count($segment) >= 3 && $segment[0] == 'content' && $segment[1] == 'page' && $segment[2] == 'about' ? 'fc' : ''; ?>">
+                        <div class="icon" style="font-size: 0.6rem;">
+                            <i class="ri-checkbox-blank-circle-fill"></i>
+                        </div>
+                        <div class="name">
+                            About
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <hr class="single">
+
+            <div class="menu ds">
+                System
+            </div>
+
+            <a href="<?= member_url('system/upload_setting'); ?>" class="menu <?= count($segment) >= 2 && $segment[0] == 'system' && $segment[1] == 'upload_setting' ? 'fc' : ''; ?>">
+                <div class="icon">
+                    <i class="ri-upload-2-line"></i>
+                </div>
+                <div class="name">
+                    Upload setting
+                </div>
+            </a>
+
+        <?php endif; ?>
+    </div>
+
+    <a href="<?= member_url('logout'); ?>" class="menu ds_hover logout context_box sig_sub1 sld" style="border-radius: 0;">
+        <div class="icon">
+            <i class="ri-logout-circle-r-line"></i>
+        </div>
+
+        <div class="name">
+            Logout
+        </div>
+    </a>
+</section>
+
+<script type="text/javascript">
+    // $(window).on('load', function() {
+
+    //     $('.sd_nav > .menu_container').find('.menu.fc')[0].scrollIntoView();
+    // });
+
+    // Event
+    $('.sd_nav > .menu_container > .menu_gr > .initial').on('click', function() {
+
+        let elem = this,
+            height = $(this).parents('.menu_gr').find('.fold_container')[0].scrollHeight;
+
+        if ($(this).parents('.menu_gr').classExists('expand')) {
+
+            $(this).parents('.menu_gr').removeClass('expand')
+                .find('.fold_container')[0].style.removeProperty('max-height');
+        } else {
+
+            $(this).parents('.menu_container').find('.menu_gr').each(function() {
+
+                $(this)
+                    .removeClass('expand')
+                    .find('.fold_container')[0].style.removeProperty('max-height');
+            });
+
+            $(this).parents('.menu_gr').addClass('expand')
+                .find('.fold_container')[0].style.maxHeight = height + 'px';
+        }
+    });
+
+    $('.sd_nav > button.dk_hide.flex.v_center.h_start.mb2').on('click', function() {
+
+        let sideNav = $(this).parents('.foldable_container').find('.sd_nav');
+
+        $(sideNav).toggleClass('active');
+    });
+</script>
+
+
+<!-- <div class="menu_container">
+
+    <a href="<?= member_url('package'); ?>" class="menu <?= $segment[0] == 'package' ? 'fc' : ''; ?> <?= isset($authority['package']) && in_array('view', $authority['package']) ? '' : 'ds'; ?>">
+        <div class="icon">
+            <i class="ri-list-check"></i>
+        </div>
+        <div class="name">
+            Package
+        </div>
+    </a>
+
+    <a href="<?= member_url('project'); ?>" class="menu <?= $segment[0] == 'project' ? 'fc' : ''; ?> <?= isset($authority['project']) && in_array('view', $authority['project']) ? '' : 'ds'; ?>">
+        <div class="icon">
+            <i class="ri-list-check-2"></i>
+        </div>
+        <div class="name">
+            Project
+        </div>
+    </a>
+
+    <a href="<?= member_url('contact'); ?>" class="menu <?= $segment[0] == 'contact' ? 'fc' : ''; ?> <?= isset($authority['contact']) && in_array('view', $authority['contact']) ? '' : 'ds'; ?>">
+        <div class="icon">
+            <i class="ri-contacts-line"></i>
+        </div>
+        <div class="name">
+            Contact
+        </div>
+    </a>
+
+    <hr class="single">
+
+    <div class="menu ds">
+        Content
+    </div>
+
+    <div class="menu_gr <?= $segment[0] == 'content' && in_array($segment[1], ['general', 'home', 'wedding', 'prewedding', 'portrait', 'about']) ? 'expand' : ''; ?> <?= isset($authority['content']) && in_array('view', $authority['content']) ? '' : 'ds'; ?>">
+        <div class="initial">
+            <div class="icon">
+                <i class="ri-layout-4-line"></i>
+            </div>
+            <div class="name">
+                Page Content
+            </div>
+        </div>
+
+        <div class="fold_container">
+
+            <a href="<?= member_url('content/general'); ?>" class="menu <?= $segment[0] == 'content' && $segment[1] == 'general' ? 'fc' : ''; ?> <?= isset($authority['content']) && in_array('view', $authority['content']) ? '' : 'ds'; ?>">
+                <div class="icon" style="font-size: 0.6rem;">
+                    <i class="ri-checkbox-blank-circle-fill"></i>
+                </div>
+                <div class="name">
+                    General
+                </div>
+            </a>
+
+            <a href="<?= member_url('content/home'); ?>" class="menu <?= $segment[0] == 'content' && $segment[1] == 'home' ? 'fc' : ''; ?> <?= isset($authority['content']) && in_array('view', $authority['content']) ? '' : 'ds'; ?>">
+                <div class="icon" style="font-size: 0.6rem;">
+                    <i class="ri-checkbox-blank-circle-fill"></i>
+                </div>
+                <div class="name">
+                    Home
+                </div>
+            </a>
+
+            <a href="<?= member_url('content/wedding'); ?>" class="menu <?= $segment[0] == 'content' && $segment[1] == 'wedding' ? 'fc' : ''; ?> <?= isset($authority['content']) && in_array('view', $authority['content']) ? '' : 'ds'; ?>">
+                <div class="icon" style="font-size: 0.6rem;">
+                    <i class="ri-checkbox-blank-circle-fill"></i>
+                </div>
+                <div class="name">
+                    Wedding
+                </div>
+            </a>
+
+            <a href="<?= member_url('content/prewedding'); ?>" class="menu <?= $segment[0] == 'content' && $segment[1] == 'prewedding' ? 'fc' : ''; ?> <?= isset($authority['content']) && in_array('view', $authority['content']) ? '' : 'ds'; ?>">
+                <div class="icon" style="font-size: 0.6rem;">
+                    <i class="ri-checkbox-blank-circle-fill"></i>
+                </div>
+                <div class="name">
+                    Prewedding
+                </div>
+            </a>
+
+            <a href="<?= member_url('content/portrait'); ?>" class="menu <?= $segment[0] == 'content' && $segment[1] == 'portrait' ? 'fc' : ''; ?> <?= isset($authority['content']) && in_array('view', $authority['content']) ? '' : 'ds'; ?>">
+                <div class="icon" style="font-size: 0.6rem;">
+                    <i class="ri-checkbox-blank-circle-fill"></i>
+                </div>
+                <div class="name">
+                    Portrait
+                </div>
+            </a>
+
+            <a href="<?= member_url('content/about'); ?>" class="menu <?= $segment[0] == 'content' && $segment[1] == 'about' ? 'fc' : ''; ?> <?= isset($authority['content']) && in_array('view', $authority['content']) ? '' : 'ds'; ?>">
+                <div class="icon" style="font-size: 0.6rem;">
+                    <i class="ri-checkbox-blank-circle-fill"></i>
+                </div>
+                <div class="name">
+                    About
+                </div>
+            </a>
+        </div>
+    </div>
+
+    <hr class="single">
+
+    <div class="menu ds">
+        Account
+    </div>
+
+    <a href="<?= member_url('user_account'); ?>" class="menu <?= $segment[0] == 'user_account' ? 'fc' : ''; ?> <?= isset($authority['user']) && in_array('view', $authority['user']) ? '' : 'ds'; ?>">
+        <div class="icon">
+            <i class="ri-user-line"></i>
+        </div>
+        <div class="name">
+            User
+        </div>
+    </a>
+
+    <a href="<?= member_url('admin_account'); ?>" class="menu <?= $segment[0] == 'admin_account' ? 'fc' : ''; ?> <?= isset($authority['admin']) && in_array('view', $authority['admin']) ? '' : 'ds'; ?>">
+        <div class="icon">
+            <i class="ri-user-2-line"></i>
+        </div>
+        <div class="name">
+            Administrator
+        </div>
+    </a>
+
+    <a href="<?= member_url('setting'); ?>" class="menu <?= $segment[0] == 'setting' ? 'fc' : ''; ?> <?= isset($authority['account_setting']) && in_array('view', $authority['account_setting']) ? '' : 'ds'; ?>">
+        <div class="icon">
+            <i class="ri-settings-4-fill"></i>
+        </div>
+        <div class="name">
+            Account Setting
+        </div>
+    </a>
+
+    <hr class="single">
+
+    <div class="menu ds">
+        API
+    </div>
+
+    <a href="<?= member_url('api/template_text'); ?>" class="menu <?= $segment[0] == 'api' && $segment[1] == 'template_text' ? 'fc' : ''; ?> <?= isset($authority['api']) && in_array('view', $authority['api']) ? '' : 'ds'; ?>">
+        <div class="icon">
+            <i class="ri-text"></i>
+        </div>
+        <div class="name">
+            Template text
+        </div>
+    </a>
+
+    <a href="<?= member_url('api/external_link'); ?>" class="menu <?= $segment[0] == 'api' && $segment[1] == 'external_link' ? 'fc' : ''; ?> <?= isset($authority['api']) && in_array('view', $authority['api']) ? '' : 'ds'; ?>">
+        <div class="icon">
+            <i class="ri-link-m"></i>
+        </div>
+        <div class="name">
+            External Link
+        </div>
+    </a>
+
+    <a href="<?= member_url('api/upload_setting'); ?>" class="menu <?= $segment[0] == 'api' && $segment[1] == 'upload_setting' ? 'fc' : ''; ?> <?= isset($authority['api']) && in_array('view', $authority['api']) ? '' : 'ds'; ?>">
+        <div class="icon">
+            <i class="ri-upload-2-line"></i>
+        </div>
+        <div class="name">
+            Upload setting
+        </div>
+    </a>
+</div>
+
+-->
+
+<?php if (
+    isset($authority['ADMINISTRATOR']['VIEW'])
+    || isset($authority['ACC_SET']['VIEW'])
+    || isset($authority['USER']['VIEW'])
+) : ?>
+
+    <hr class="single">
+
+    <div class="menu ds">
+        Account
+    </div>
+
+    <?php if (isset($authority['USER']['VIEW'])) : ?>
+        <a href="<?= member_url('user_account'); ?>" class="menu <?= $segment[0] == 'user_account' ? 'fc' : ''; ?>">
+            <div class="icon">
+                <i class="ri-user-line"></i>
+            </div>
+            <div class="name">
+                User
+            </div>
+        </a>
+    <?php endif; ?>
+
+    <?php if (isset($authority['ADMINISTRATOR']['VIEW'])) : ?>
+        <a href="<?= member_url('admin_account'); ?>" class="menu <?= $segment[0] == 'admin_account' ? 'fc' : ''; ?>">
+            <div class="icon">
+                <i class="ri-user-2-line"></i>
+            </div>
+            <div class="name">
+                Administrator
+            </div>
+        </a>
+    <?php endif; ?>
+
+    <?php if (isset($authority['ACC_SET']['VIEW'])) : ?>
+        <a href="<?= member_url('account_setting'); ?>" class="menu <?= $segment[0] == 'account_setting' ? 'fc' : ''; ?>">
+            <div class="icon">
+                <i class="ri-settings-4-fill"></i>
+            </div>
+            <div class="name">
+                Account setting
+            </div>
+        </a>
+    <?php endif; ?>
+<?php endif; ?>
