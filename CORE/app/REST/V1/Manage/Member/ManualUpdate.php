@@ -47,6 +47,7 @@ class ManualUpdate extends BaseRESTV1
         'business_phone_number' => ['call_number[62]'],
         'business_email' => ['email'],
         'business_registration_date' => ['date_ymd'],
+        'business_legal' => [],
     ];
 
     /* Edit this line to set privilege rules */

@@ -446,13 +446,15 @@ HTMLElement.prototype.checkboxes = function () {
         // Checkbox status
         if (status) {
 
-            $(this).removeAttr('checked')
+            $(this)
                 .find('input[type="checkbox"]')
-                .prop('checked', true);
+                .prop('checked', true)
+                .change();
         } else {
 
             $(this).find('input[type="checkbox"]')
-                .prop('checked', false);
+                .prop('checked', false)
+                .change();
         }
     };
 
@@ -486,7 +488,7 @@ $('body').on('click', 'label[class*="checkbox"][multi=false]', function (evt) {
 }).on('change', 'input[class*="checkbox"]', function (evt) {
 
     this.checkboxes().cxInput();
-}).find('label[class*="checkbox"]').each(function () {
+}).find('label[class*="checkbox"] input').each(function () {
 
     this.checkboxes().prep();
 });

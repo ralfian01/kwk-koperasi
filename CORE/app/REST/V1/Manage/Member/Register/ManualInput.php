@@ -39,14 +39,15 @@ class ManualInput extends BaseRESTV1
         'npwp' => [],
 
         // Business
-        'registration_number' => ['required'],
-        'registration_type' => ['required', 'enum[NIB, SIUP, CV]'],
-        'business_name' => ['required', 'maxlength[100]'],
-        'business_address' => ['required', 'maxlength[355]'],
+        'registration_number' => [],
+        'registration_type' => ['enum[NIB, SIUP, CV]'],
+        'business_name' => ['maxlength[100]'],
+        'business_address' => ['maxlength[355]'],
         'business_npwp' => [],
-        'business_phone_number' => ['required', 'call_number[62]'],
+        'business_phone_number' => ['call_number[62]'],
         'business_email' => ['email'],
-        'business_registration_date' => ['required', 'date_ymd'],
+        'business_registration_date' => ['date_ymd'],
+        'business_legal' => [],
     ];
 
     /* Edit this line to set privilege rules */

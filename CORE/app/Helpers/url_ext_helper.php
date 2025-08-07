@@ -17,8 +17,10 @@ if (!function_exists('member_url')) {
 
         $hostname = $_SERVER['member_hostname'] ?? '';
 
-        if ($path != null)
+        if ($path != null) {
+            $path = ltrim($path, '/');
             $path = "/{$path}";
+        }
 
         return "{$scheme}://{$hostname}{$path}";
     }

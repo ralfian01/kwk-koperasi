@@ -36,4 +36,4 @@ $app = new \AppConfig\App();
 $port = !in_array($app->port, ['80', '443']) ? ":{$app->port}" : "";
 $rewrite = SYSTEMPATH . 'Contemplate/rewrite.php';
 
-exec("php -S localhost{$port} -t {$dirTarget} -f {$indexFile} \"{$rewrite}\"");
+exec("php -S localhost{$port} -t \"{$dirTarget}\" -f \"{$indexFile}\" \"{$rewrite}\"");

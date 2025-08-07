@@ -35,6 +35,7 @@ class Get extends BaseRESTV1
     /* Edit this line to set privilege rules */
     protected $privilegeRules = [
         'MEMBER_MANAGE_VIEW'
+        // 'UBP'
     ];
 
 

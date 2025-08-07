@@ -814,7 +814,7 @@ textarea::-webkit-scrollbar-thumb:hover {
 /* … */
 /* || Selection control */
 /* ||| Checkboxes */
-label.checkbox1 {
+/* label.checkbox1 {
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
@@ -865,6 +865,63 @@ label.checkbox1 .name {
 label.checkbox1[checked] .box,
 label.checkbox1:has(input:checked) .box {
   background: var(--colorPrimary);
+} */
+
+label.checkbox1 {
+  user-select: none;
+  min-width: 15px;
+  min-height: 15px;
+  width: 15px;
+  height: 15px;
+  max-width: 15px;
+  max-height: 15px;
+  border-radius: 3px;
+  box-sizing: border-box;
+  border: 1px solid rgb(100, 100, 100);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+  position: relative;
+  transition: 150ms;
+}
+
+label.checkbox1::before {
+  position: absolute;
+  top: 0;
+  left: 0;
+  content: "";
+  z-index: 0;
+  opacity: 0;
+  transition: 150ms;
+  width: 100%;
+  height: 100%;
+  background-color: transparent;
+  background-size: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='24' height='24'%3E%3Cpath fill='none' d='M0 0h24v24H0z'/%3E%3Cpath d='M10 15.172l9.192-9.193 1.415 1.414L10 18l-6.364-6.364 1.414-1.414z' fill='rgba(255,255,255,1)'/%3E%3C/svg%3E");
+}
+
+label.checkbox1[checked],
+label.checkbox1:has(input:checked),
+label.checkbox1:has(input[checked]) {
+  background-color: purple;
+}
+
+label.checkbox1[checked]::before,
+label.checkbox1:has(input:checked)::before,
+label.checkbox1:has(input[checked])::before {
+  opacity: 1;
+}
+
+label.checkbox1[disabled],
+label.checkbox1:has(input[disabled]) {
+  background: rgb(220, 200, 200);
+}
+
+label.checkbox1 input {
+  display: none;
 }
 
 label[type=checkbox].checkbox2 {
@@ -1132,12 +1189,14 @@ label.radio1::before {
 }
 
 label.radio1[checked],
-label.radio1:has(input:checked) {
+label.radio1:has(input:checked),
+label.radio1:has(input[checked]) {
   background-color: purple;
 }
 
 label.radio1[checked]::before,
-label.radio1:has(input:checked)::before {
+label.radio1:has(input:checked)::before,
+label.radio1:has(input[checked])::before {
   opacity: 1;
 }
 

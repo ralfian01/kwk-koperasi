@@ -89,166 +89,6 @@ class _redirectPost {
     }
 }
 
-// // App Console
-// class _notifConsole {
-
-//     constructor() {
-//         this.option = {
-//             text: '',
-//             duration: 1000,
-//             background: 'rgb(70, 70, 70)',
-//             colorType: 'bold'
-//         };
-//     }
-
-//     // Method
-//     removeElem(elem) {
-
-//         elem.style.transform = 'translate3d(-50%, 100%, 1px) scale(1)';
-//         elem.style.opacity = '0';
-
-//         setTimeout((elem) => {
-
-//             elem.remove();
-//         }, 301, elem);
-//     }
-
-//     base() {
-
-//         const elem = document.createElement('div');
-
-//         elem.innerHTML = this.option.text;
-
-//         elem.style.cursor = 'default';
-//         elem.style.transition = '300ms';
-//         elem.style.width = 'fit-content';
-//         elem.style.textAlign = 'center';
-//         elem.style.maxWidth = '90vw';
-//         elem.style.borderRadius = '10px';
-//         elem.style.fontSize = '14px';
-//         elem.style.padding = '15px 20px';
-//         elem.style.boxSizing = 'border-box';
-//         elem.style.fontWeight = 'normal';
-//         elem.style.position = 'fixed';
-//         elem.style.bottom = '20px';
-//         elem.style.left = '50%';
-//         elem.style.transform = 'translate3d(-50%, 0, 1px) scale(0)';
-//         elem.style.zIndex = '999';
-//         elem.style.background = this.option.background;
-
-//         if (this.option.colorType == 'bold') {
-
-//             elem.style.color = '#fff';
-//             elem.style.border = '1px solid transparent';
-//         } else if (this.colorType == 'light') {
-
-//             elem.style.color = 'rgb(20, 20, 20)';
-//             elem.style.border = this.option.border;
-//         }
-
-//         document.getElementsByTagName('body')[0].appendChild(elem);
-
-//         setTimeout((elem) => {
-
-//             elem.style.transform = 'translate3d(-50%, 0, 1px) scale(1)';
-
-//             elem.addEventListener('click', () => {
-
-//                 this.removeElem(elem);
-//             });
-
-//             setTimeout((elem) => {
-
-//                 this.removeElem(elem);
-//             }, this.option.duration, elem);
-//         }, 100, elem);
-//     }
-
-//     default(text = '', duration = 1500, colorType = 'bold') {
-
-//         this.option.background = 'rgb(70, 70, 70)';
-//         this.option.border = '1px solid rgb(70, 70, 70)';
-
-//         if (colorType == 'light')
-//             this.option.background = 'rgb(200, 200, 200)';
-
-//         this.option.colorType = colorType;
-//         this.option.text = text;
-//         this.option.duration = duration;
-//         this.base();
-
-//         return this;
-//     }
-
-//     success(text = '', duration = 1500, colorType = 'bold') {
-
-//         let color = 'var(--colorGreen)' || 'rgba(111, 167, 77, 1)';
-//         this.option.background = color;
-//         this.option.border = '1px solid ' + color;
-
-//         if (colorType == 'light')
-//             this.option.background = 'rgb(225, 255, 207)';
-
-//         this.option.colorType = colorType;
-//         this.option.text = text;
-//         this.option.duration = duration;
-//         this.base();
-
-//         return this;
-//     }
-
-//     info(text = '', duration = 1500, colorType = 'bold') {
-
-//         let color = 'var(--colorBlue)' || 'rgba(56, 167, 171, 1)';
-//         this.option.background = color;
-//         this.option.border = '1px solid ' + color;
-
-//         if (colorType == 'light')
-//             this.option.background = 'rgb(184, 252, 255)';
-
-//         this.option.colorType = colorType;
-//         this.option.text = text;
-//         this.option.duration = duration;
-//         this.base();
-
-//         return this;
-//     }
-
-//     warning(text = '', duration = 1500, colorType = 'bold') {
-
-//         let color = 'var(--colorOrange)' || 'rgba(233, 132, 41, 1)';
-//         this.option.background = color;
-//         this.option.border = '1px solid ' + color;
-
-//         if (colorType == 'light')
-//             this.option.background = 'rgb(255, 197, 145)';
-
-//         this.option.colorType = colorType;
-//         this.option.text = text;
-//         this.option.duration = duration;
-//         this.base();
-
-//         return this;
-//     }
-
-//     error(text = '', duration = 1500, colorType = 'bold') {
-
-//         let color = 'var(--colorOrange)' || 'rgba(233, 70, 89, 1)';
-//         this.option.background = color;
-//         this.option.border = '1px solid ' + color;
-
-//         if (colorType == 'light')
-//             this.option.background = 'rgb(255, 140, 154)';
-
-//         this.option.colorType = colorType;
-//         this.option.text = text;
-//         this.option.duration = duration;
-//         this.base();
-
-//         return this;
-//     }
-// }
-
 // App Console
 class _notifConsole {
 
@@ -1130,7 +970,7 @@ class _formCollect {
             // Collect all form data
             try {
 
-                this.formTarget.querySelectorAll('input[type="text"], input[type="email"], input[type="password"], input[type="date"], input[type="file"], input[type="month"], input[type="range"], input[type="tel"], input[type="week"], input[type="text"], input[type="search"], input[type="number"], input[type="url"], input[type="hidden"], input[type="checkbox"]:checked, input[type="radio"]:checked, textarea, select').forEach((elem) => {
+                this.formTarget.querySelectorAll('input[type="text"], input[type="email"], input[type="password"], input[type="date"], input[type="file"], input[type="month"], input[type="range"], input[type="tel"], input[type="week"], input[type="text"], input[type="search"], input[type="number"], input[type="url"], input[type="hidden"], input[type="checkbox"]:checked, input[type="radio"]:checked, input[type="checkbox"][checked], input[type="radio"][checked], textarea, select').forEach((elem) => {
 
                     let formType = elem.getAttribute('type');
 
@@ -1156,11 +996,27 @@ class _formCollect {
 
                         value['value'] = elem.value.strReplace(['.', ','], '') || null;
                     } else {
-
                         value['value'] = elem.value || null;
                     }
 
-                    jsonData[elem.getAttribute('name')] = value;
+                    if (['checkbox'].indexOf(formType) >= 0) {
+
+                        if (typeof jsonData[elem.getAttribute('name')] === 'undefined') {
+                            jsonData[elem.getAttribute('name')] = value;
+                        }
+
+                        if (!Array.isArray(jsonData[elem.getAttribute('name')]['value'])) {
+
+                            jsonData[elem.getAttribute('name')] = Object.assign({}, value);
+                            jsonData[elem.getAttribute('name')]['value'] = [];
+                        }
+
+                        jsonData[elem.getAttribute('name')]['value'].push(value['value']);
+                    } else {
+
+                        jsonData[elem.getAttribute('name')] = value;
+                    }
+
                 });
             } finally {
 
@@ -1688,6 +1544,13 @@ const rupiah = function (value = 0) {
 // Convert json key - value to form data
 const jsonToFormData = function (json = null, option = {}) {
 
+    const encodeValue = function (encode, value) {
+        switch (encode) {
+            case 'base64':
+                return btoa(value);
+        }
+    };
+
     if (json == null) return null;
 
     let formData = new FormData();
@@ -1697,6 +1560,8 @@ const jsonToFormData = function (json = null, option = {}) {
         let value = json[key];
 
         if (!(value instanceof FileList)) {
+
+            // value no file
 
             // Options
             if ([undefined, null, '', {}, []].indexOf(option) < 0) {
@@ -1710,42 +1575,32 @@ const jsonToFormData = function (json = null, option = {}) {
                             && typeof option['encode'] !== 'undefined'
                         ) {
 
-                            switch (option['encode']) {
-
-                                case 'base64':
-                                    value = btoa(value);
-                                    break;
-                            }
+                            value = encodeValue(option['encode'], value);
                         }
                     } else {
 
                         if (typeof option['encode'] !== 'undefined') {
 
-                            switch (option['encode']) {
-
-                                case 'base64':
-                                    value = btoa(value);
-                                    break;
-                            }
+                            value = encodeValue(option['encode'], value);
                         }
                     }
                 }
             }
-
-            formData.append(key, value);
         } else {
 
-            if (value.length > 1) {
-
-                Array.from(value).forEach((flVal, flKey) => {
-
-                    formData.append(`${key}[]`, flVal);
-                });
-            } else {
-
-                formData.append(key, value[0]);
-            }
+            value = value[0];
         }
+
+        if (Array.isArray(value)) {
+
+            Array.from(value).forEach((flVal, flKey) => {
+
+                formData.append(`${key}[]`, flVal);
+            });
+        } else {
+            formData.append(key, value);
+        }
+
     });
 
     return formData;

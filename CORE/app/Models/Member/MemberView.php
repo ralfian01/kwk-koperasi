@@ -59,6 +59,7 @@ class MemberView extends DynModel
             "business_email" => "pts_member__business.pmb_businessEmail",
             "registration_date" => "pts_member__business.pmb_businessRegistrationDate",
             "business_document" => "pts_member__business.pmb_businessDocument",
+            "business_legal" => "pts_member__business.pmb_businessLegal",
         ], "business"],
         // 
         ["pts_account.pa_username", "username"],
@@ -170,7 +171,10 @@ class MemberView extends DynModel
             if (isset($value['pm_metaState'])) $value['pm_metaState'] = json_decode($value['pm_metaState'], true);
             if (isset($value['identity'])) $value['identity'] = json_decode($value['identity'], true);
             if (isset($value['business'])) $value['business'] = json_decode($value['business'], true);
+            if (isset($value['business']['business_legal'])) $value['business']['business_legal'] = json_decode($value['business']['business_legal'], true);
+
             if (isset($value['verifier'])) $value['verifier'] = json_decode($value['verifier'], true);
+
 
             $result[$key] = $value;
         }
@@ -208,6 +212,8 @@ class MemberView extends DynModel
             if (isset($result['pm_metaState'])) $result['pm_metaState'] = json_decode($result['pm_metaState'], true);
             if (isset($result['identity'])) $result['identity'] = json_decode($result['identity'], true);
             if (isset($result['business'])) $result['business'] = json_decode($result['business'], true);
+            if (isset($result['business']['business_legal'])) $result['business']['business_legal'] = json_decode($result['business']['business_legal'], true);
+
             if (isset($result['verifier'])) $result['verifier'] = json_decode($result['verifier'], true);
         }
         return $result;

@@ -13,7 +13,9 @@ use App\Web\Member as Member;
 ## Commercial
 Web::group('/', function ($web) {
 
-    // 
+    // $web->get('/', function ($web) {
+    //     return header('Location: youtube.com');
+    // });
 });
 
 ## Member

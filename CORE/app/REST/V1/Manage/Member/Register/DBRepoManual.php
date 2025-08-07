@@ -2,6 +2,7 @@
 
 namespace App\REST\V1\Manage\Member\Register;
 
+use App\Models\Account;
 use MVCME\REST\BaseDBRepo;
 use MVCME\Database\Exceptions\DatabaseException;
 use MVCME\Database\Exceptions\DataException;
@@ -15,6 +16,7 @@ use App\Models\Member\MemberView;
  */
 class DBRepoManual extends BaseDBRepo
 {
+    private $dbAccount;
     private $dbMember;
     private $dbMemberIdentity;
     private $dbMemberBusiness;
@@ -24,6 +26,7 @@ class DBRepoManual extends BaseDBRepo
     {
         parent::__construct($payload, $file, $auth);
 
+        $this->dbAccount = new Account();
         $this->dbMember = new Member();
         $this->dbMemberIdentity = new MemberIdentity();
         $this->dbMemberBusiness = new MemberBusiness();
@@ -69,7 +72,13 @@ class DBRepoManual extends BaseDBRepo
     public function manualInput()
     {
         ## Formatting additional data which not payload
-        // Code here...
+        // Try to get pa_id from uuid
+        $account = $this->dbAccount
+            ->selectColumn(['account_id'])
+            ->all([
+                'uuid' => 'acff74f5-b320-4113-9f35-221e85e5caeb'
+            ]);
+        $paId = $account[0]['account_id'];
 
         ## Formatting payload
         // Code here...
@@ -85,7 +94,7 @@ class DBRepoManual extends BaseDBRepo
 
             // If id found and Delete keys that have a null value
             $dbPayload = removeNullValues([
-                'pa_id' => 15,
+                'pa_id' => $paId,
                 'pm_registerNumber' => $this->payload['register_number'] ?? null,
                 'pm_nickname' => $this->payload['nickname'] ?? null,
                 'pm_addressDomicile' => $this->payload['address_domicile'] ?? null,
@@ -134,6 +143,7 @@ class DBRepoManual extends BaseDBRepo
                 'pmb_businessPhoneNumber' => $this->payload['business_phone_number'] ?? null,
                 'pmb_businessEmail' => $this->payload['business_email'] ?? null,
                 'pmb_businessRegistrationDate' => $this->payload['business_registration_date'] ?? null,
+                'pmb_businessLegal' => isset($this->payload['business_legal']) ? json_encode($this->payload['business_legal']) : null
             ]);
 
             // Insert data and return insert Id

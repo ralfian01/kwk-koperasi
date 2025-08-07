@@ -14,6 +14,7 @@ $sidebarMenuTarget = function (array $targetList) {
             $paths = implode('/', $paths);
 
             $offsetTargetUrl = member_url($paths);
+
             $targetUrl = str_replace(['/$'], '', $target);
 
             if ($offsetTargetUrl == $targetUrl) {

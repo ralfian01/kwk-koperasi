@@ -141,6 +141,7 @@ class DBRepoManual extends BaseDBRepo
                 'pmb_businessPhoneNumber' => $this->payload['business_phone_number'] ?? null,
                 'pmb_businessEmail' => $this->payload['business_email'] ?? null,
                 'pmb_businessRegistrationDate' => $this->payload['business_registration_date'] ?? null,
+                'pmb_businessLegal' => isset($this->payload['business_legal']) ? json_encode($this->payload['business_legal']) : null,
             ]);
 
             // Update data and return update Id

@@ -16,7 +16,7 @@ class Business extends DynModel
     protected $primaryKey = 'pmb_id';
     protected $returnType = 'array';
     protected $allowedFields = [
-        "pm_id", "pmb_registrationNumber", "pmb_registrationType", "pmb_businessName", "pmb_businessAddress", "pmb_businessNPWP", "pmb_businessPhoneNumber", "pmb_businessEmail", "pmb_businessRegistrationDate", "pmb_businessDocument"
+        "pm_id", "pmb_registrationNumber", "pmb_registrationType", "pmb_businessName", "pmb_businessAddress", "pmb_businessNPWP", "pmb_businessPhoneNumber", "pmb_businessEmail", "pmb_businessRegistrationDate", "pmb_businessDocument", "pmb_businessLegal"
     ];
     protected $useAutoIncrement = true;
     protected $skipValidation = true;
@@ -42,6 +42,7 @@ class Business extends DynModel
         ["pmb_businessEmail", "business_email"],
         ["pmb_businessRegistrationDate", "registration_date"],
         ["pmb_businessDocument", "business_document"],
+        ["pmb_businessLegal", "business_legal"],
     ];
 
     protected $filterData = [
@@ -97,7 +98,7 @@ class Business extends DynModel
 
         // Parse the column that has JSON value
         foreach ($result as $key => $value) {
-            if (isset($value['pm_metaState'])) $value['pm_metaState'] = json_decode($value['pm_metaState'], true);
+            if (isset($value['business_legal'])) $value['business_legal'] = json_decode($value['business_legal'], true);
 
             $result[$key] = $value;
         }
@@ -132,7 +133,7 @@ class Business extends DynModel
             $result = $result[0];
 
             // Parse the column that has JSON value
-            if (isset($result['pm_metaState'])) $result['pm_metaState'] = json_decode($result['pm_metaState'], true);
+            if (isset($result['business_legal'])) $result['business_legal'] = json_decode($result['business_legal'], true);
         }
         return $result;
     }

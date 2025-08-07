@@ -152,7 +152,7 @@
                         <div class="flex flex_gap1 y_start x_start">
 
                             <div class="flex y_center x_start">
-                                <label class="radio1" for="male" type="radio">
+                                <label class="radio1" for="male">
                                     <input id="male" type="radio" name="gender" value="M">
                                 </label>
 
@@ -162,7 +162,7 @@
                             </div>
 
                             <div class="flex y_center x_start">
-                                <label class="radio1" for="female" type="radio">
+                                <label class="radio1" for="female">
                                     <input id="female" type="radio" name="gender" value="F">
                                 </label>
 
@@ -226,10 +226,44 @@
                     </div>
                 </div> -->
 
+                    <div class="tx_field1 mt2">
+                        <div class="input_label">
+                            <label>
+                                Izin usaha
+                            </label>
+                        </div>
+
+                        <?php {
+                            $businessLegals = [
+                                ['NIB', 'NIB (Nomor Induk Berusaha)'],
+                                ['NPWP', 'NPWP Usaha'],
+                                ['PIRT', 'PIRT (Pangan Industri Rumah Tangga)'],
+                                ['BPOM', 'BPOM'],
+                                ['HALAL', 'Sertifikasi Halal'],
+                                ['Depkes', 'Depkes'],
+                                ['HAKI', 'HaKI (Hak Kekayaan Intelektual)'],
+                            ];
+                        } ?>
+
+                        <?php foreach ($businessLegals as $value) : ?>
+
+                            <div class="flex y_center x_start mt1">
+                                <label class="checkbox1" for="business_legal:<?= $value[0]; ?>">
+                                    <input id="business_legal:<?= $value[0]; ?>" type="checkbox" name="business_legal" value="<?= $value[0]; ?>">
+                                </label>
+
+                                <div class="flex_child ml0c5">
+                                    <?= $value[1]; ?>
+                                </div>
+                            </div>
+
+                        <?php endforeach; ?>
+                    </div>
+
                     <div class="tx_field1 mt2 wd50pc">
                         <div class="input_label">
                             <label for="registration_number">
-                                Nomor Induk Berusaha <span style="color: red">*</span>
+                                Nomor Induk Berusaha
                             </label>
                         </div>
 
@@ -241,7 +275,7 @@
                     <div class="tx_field1 mt2 wd50pc">
                         <div class="input_label">
                             <label for="business_registration_date">
-                                Tanggal pengesahan NIB <span style="color: red">*</span>
+                                Tanggal pengesahan NIB
                             </label>
                         </div>
 
@@ -253,7 +287,7 @@
                     <div class="tx_field1 mt2 wd50pc">
                         <div class="input_label">
                             <label for="business_name">
-                                Nama usaha <span style="color: red">*</span>
+                                Nama usaha
                             </label>
                         </div>
 
@@ -265,7 +299,7 @@
                     <div class="tx_field1 mt2">
                         <div class="input_label">
                             <label for="business_address">
-                                Alamat usaha <span style="color: red">*</span>
+                                Alamat usaha
                             </label>
                         </div>
 
@@ -289,7 +323,7 @@
                     <div class="tx_field1 mt2 wd100pc">
                         <div class="input_label">
                             <label for="business_phone_number">
-                                Nomor telepon usaha <span style="color: red">*</span>
+                                Nomor telepon usaha
                             </label>
                         </div>
 
@@ -344,10 +378,33 @@
 
         let formTarget = $('body').find('.form_target');
         let data = JSON.parse(savedJson);
-        $.each(data, function(key, value) {
 
-            let element = $(formTarget).find('input[name="' + key + '"], textarea[name="' + key + '"]', 'select[name="' + key + '"]')
-            $(element).val(value);
+        $.each(data, function(name, value) {
+
+            let input = $(formTarget).find(`input[name="${name}"], textarea[name="${name}"], select[name="${name}"]`)
+            if ($.inArray(input.attr('type'), ['radio', 'checkbox']) >= 0) {
+
+                const multiInput = function(name, value) {
+
+                    let elemInput = $(formTarget).find(`
+                        input[type="radio"][name="${name}"][value*="${value}"],
+                        input[type="checkbox"][name="${name}"][value*="${value}"]
+                    `);
+
+                    if (elemInput.length >= 1) {
+                        $(elemInput).attr('checked');
+                    }
+                }
+
+                if (Array.isArray(value)) {
+                    $.each(value, (lpKey, value) => multiInput(name, value));
+                } else {
+                    multiInput(name, value);
+                }
+            } else {
+
+                $(input).val(value);
+            }
         });
     })
 
@@ -381,25 +438,15 @@
                     name: 'gender'
                 }, {
                     name: 'address'
-                }, {
-                    name: 'registration_number'
-                }, {
-                    name: 'registration_type'
-                }, {
-                    name: 'business_name'
-                }, {
-                    name: 'business_address'
-                }, {
-                    name: 'business_phone_number'
-                }, {
-                    name: 'business_registration_date'
                 }])
                 .collect(
                     (json) => {
 
                         json['phone_number'] = "62" + json['phone_number'];
                         json['wa_number'] = "62" + json['wa_number'];
-                        json['business_phone_number'] = "62" + json['business_phone_number'];
+
+                        if (typeof json['business_phone_number'] != 'undefined')
+                            json['business_phone_number'] = "62" + json['business_phone_number'];
 
                         let url = $.makeURL.api().addPath('manage/member/register/manual').href;
                         let formData = jsonToFormData(json);
@@ -460,7 +507,7 @@
                     }
                 );
         })
-        .on('keyup', '.form_target', function() {
+        .on('keyup change', '.form_target', function() {
 
             $.formCollect
                 .target(this)

@@ -41,7 +41,12 @@ class CookieToken implements MiddlewareInterface
                 $accUUID = base64_decode($jwtObject->uid_b64);
                 $accData = $this->dbAcc
                     ->selectColumn([
-                        'account_id', 'uuid', 'username', 'pav_metaState', 'role', 'privilege'
+                        'account_id',
+                        'uuid',
+                        'username',
+                        'pav_metaState',
+                        'role',
+                        'privilege'
                     ])
                     ->all([
                         'uuid' => $accUUID
@@ -63,11 +68,17 @@ class CookieToken implements MiddlewareInterface
         }
 
         // Return authentication
-        $request->auth = new stdClass();
-        $request->auth->status = $auth['status'];
-        $request->auth->data = $auth['data'];
+        $request->auth = (object) [
+            'status' => $auth['status'],
+            'data' => $auth['data']
+        ];
 
         return $request;
+
+        // return (object) [
+        //     'status' => $auth['status'],
+        //     'data' => $auth['data']
+        // ];
     }
 
     public function after(HTTPRequestInterface $request, HTTPResponseInterface $response, $arguments = null)
